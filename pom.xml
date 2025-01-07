@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.4.1</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	
+	<groupId>com.vabs.ecm</groupId>
+	<artifactId>openshift-micro-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	
+	<name>openshift-micro-service</name>
+	<description>Demo project for Openshift Spring Boot</description>
+	
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	
+<!-- https://docs.redhat.com/en/documentation/red_hat_support_for_spring_boot/2.5/html/spring_boot_runtime_guide/creating-a-basic-springboot-application_spring-boot#deploying-runtime-application-to-openshift-using-fabric8-maven-plugin_spring-boot -->
+<!-- right click-> maven build-> goal -> clean package -Popenshift -Ddekorate.deploy=true -->
+	
+	<dependencies>
+			 <dependency>
+		        <groupId>dev.snowdrop</groupId>
+		        <artifactId>snowdrop-dependencies</artifactId>
+		        <version>2.5.12.Final-redhat-00001</version>
+		        <type>pom</type>
+		      <!--  <scope>import</scope>-->
+	        </dependency>
+	        <dependency>
+			    <groupId>io.dekorate</groupId>
+			    <artifactId>openshift-spring-starter</artifactId>
+			    <version>4.1.4</version>
+			</dependency>
+	        <dependency>
+		        <groupId>org.springframework.boot</groupId>
+		        <artifactId>spring-boot-starter-tomcat</artifactId>
+		    </dependency>
+		  <!--  <dependency>
+			      <groupId>io.fabric8</groupId>
+			      <artifactId>knative-client</artifactId>
+			      <version>7.0.1</version>
+			</dependency>-->
+			<!-- https://mvnrepository.com/artifact/io.fabric8/openshift-client -->
+			<dependency>
+			    <groupId>io.fabric8</groupId>
+			    <artifactId>openshift-client</artifactId>
+			    <version>7.0.1</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/io.fabric8/kubernetes-httpclient-okhttp -->
+			<dependency>
+			    <groupId>io.fabric8</groupId>
+			    <artifactId>kubernetes-httpclient-okhttp</artifactId>
+			    <version>7.0.1</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.fabric8</groupId>
+			    <artifactId>kubernetes-client</artifactId>
+			    <version>7.0.1</version>
+			</dependency>
+		    
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter</artifactId>
+			</dependency>
+	
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<!--<scope>test</scope>-->
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-configuration-processor</artifactId>
+				<optional>true</optional>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-actuator</artifactId>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<optional>true</optional>
+			</dependency>
+			
+			 <dependency>
+	            <groupId>org.slf4j</groupId>
+	            <artifactId>slf4j-api</artifactId>
+	        </dependency>
+			
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- Specify the repositories containing Spring Boot artifacts -->
+	  <repositories>
+	    <repository>
+	      <id>redhat-ga</id>
+	      <name>Red Hat GA Repository</name>
+	      <url>https://maven.repository.redhat.com/ga/</url>
+	    </repository>
+	  </repositories>
+	 
+	  <pluginRepositories>
+	    <pluginRepository>
+	      <id>redhat-ga</id>
+	      <name>Red Hat GA Repository</name>
+	      <url>https://maven.repository.redhat.com/ga/</url>
+	    </pluginRepository>
+	  </pluginRepositories> 
+	  
+	  
+	  <profiles>
+	    <profile>
+	      <id>openshift</id>
+	      <build>
+	        <plugins>
+	           <plugin>
+	             <groupId>io.dekorate</groupId>
+	             <artifactId>openshift-spring-starter</artifactId>
+	             <version>4.1.4</version>
+	           </plugin>
+	        </plugins>
+	      </build>
+	    </profile>
+	</profiles>
+
+</project>

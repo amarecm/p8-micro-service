@@ -1,9 +1,11 @@
-FROM registry.access.redhat.com/ubi8/openjdk-17 as build
+# Build the application first using Maven
+FROM maven:3.8.3-openjdk-17 as build
 WORKDIR /app
 COPY . .
 RUN mvn install
 
-FROM registry.access.redhat.com/ubi8/openjdk-17
+# Inject the JAR file into a new container to keep the file small
+FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=build /app/target/openshift-micro-service-*.jar /app/app.jar
 EXPOSE 8080

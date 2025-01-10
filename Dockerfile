@@ -1,16 +1,11 @@
+FROM registry.access.redhat.com/ubi8/openjdk-17 as build
+WORKDIR /app
+COPY . .
+RUN mvn install
+
 FROM registry.access.redhat.com/ubi8/openjdk-17
-#LABEL MAINTAINER = "AMARENDAR.MIRYALA"
-
-USER root
-RUN mkdir -p /logs
-
-#WORKDIR /app
-
-
-COPY target/openshift-micro-service-0.0.1-SNAPSHOT.jar app.jar
-#COPY target/*.jar app.jar
-
+WORKDIR /app
+COPY --from=build /app/target/openshift-micro-service-*.jar /app/app.jar
 EXPOSE 8080
-
-#CMD [ "java", "-jar", "app.jar" ]
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+ENTRYPOINT ["sh", "-c"]
+CMD ["java -jar app.jar"]

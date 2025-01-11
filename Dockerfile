@@ -1,5 +1,9 @@
 # Build the application first using Maven
 FROM maven:3.8.3-openjdk-17 as build
+
+USER root
+RUN mkdir -p /logs
+
 WORKDIR /app
 COPY . .
 RUN mvn install

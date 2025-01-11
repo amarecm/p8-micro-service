@@ -4,6 +4,9 @@ FROM maven:3.8.3-openjdk-17 as build
 USER root
 RUN mkdir -p /logs
 
+RUN chgrp -R 0 /var/log && \
+    chmod -R g=u /var/log
+    
 WORKDIR /app
 COPY . .
 RUN mvn install

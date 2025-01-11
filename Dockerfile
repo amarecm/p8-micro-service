@@ -1,11 +1,11 @@
 # Build the application first using Maven
 FROM maven:3.8.3-openjdk-17 as build
 
-USER root
+#USER root
 RUN mkdir -p /logs
 
-RUN chgrp -R 0 /var/log && \
-    chmod -R g=u /var/log
+RUN chgrp -R 0 /logs && \
+    chmod -R g=u /logs
     
 WORKDIR /app
 COPY . .

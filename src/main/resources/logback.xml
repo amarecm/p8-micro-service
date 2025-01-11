@@ -1,10 +1,10 @@
 <configuration>
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
        <!-- <file>/apps/ECM/Projects/openshift/logs/ecm_openshift_service.log</file>-->
-       <file>/var/log/openshift-micro-service.log</file>
+       <file>/app/openshift-micro-service.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 	        <!--<fileNamePattern>/apps/ECM/Projects/openshift/logs/ecm_openshift_service.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>-->
-	        <fileNamePattern>/var/log/openshift-micro-service.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+	        <fileNamePattern>/app/openshift-micro-service.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
 	        
         <!--    <timeBasedFileNamingAndTriggeringPolicy
                 class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
